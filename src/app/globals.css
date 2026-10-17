@@ -451,7 +451,7 @@ fieldset { min-width: 0; }
 .menu-section .menu-item.highlighted .menu-card-surface { border-color: var(--card-accent); box-shadow: 0 10px 30px #321e1b40, inset 0 0 0 1px var(--card-glow); }
 .menu-card-photo { position: relative; height: 132px; overflow: hidden; }
 .menu-card-photo img { object-position: center 65%; }
-.menu-photo-shade { position: absolute; inset: 0; background: linear-gradient(0deg, #321e1be6, #5c3f3633); }
+.menu-photo-shade { position: absolute; inset: 0; background: linear-gradient(0deg, color-mix(in srgb, var(--card-end) 90%, transparent), color-mix(in srgb, var(--card-start) 20%, transparent)); }
 .menu-card-body { position: relative; z-index: 2; display: flex; flex-direction: column; min-height: 220px; padding: 24px; background: #321e1b4d; }
 .menu-card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
 .menu-card-photo + .menu-card-body .menu-card-top { margin-top: -49px; margin-bottom: 18px; }

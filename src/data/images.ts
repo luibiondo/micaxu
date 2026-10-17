@@ -180,10 +180,23 @@ export const galleryImages: RestaurantImage[] = [
   restaurantImages.cervejas,
 ];
 
-export const menuCategoryImages: Partial<Record<MenuCategoryId, RestaurantImage>> = {
-  porcoes: restaurantImages.iscasPeixe,
-  cervejas: restaurantImages.cervejas,
-  'sucos-chas': restaurantImages.sucoLaranja,
+export const menuPlaceholderImage: RestaurantImage = image(
+  'placeholder-comida',
+  'Foto ilustrativa do prato',
+  'prato',
+  1000,
+  667,
+);
+
+/** @deprecated Use menuPlaceholderImage for every menu card, regardless of category. */
+export const menuCategoryImages: Record<MenuCategoryId, RestaurantImage> = {
+  porcoes: menuPlaceholderImage,
+  cervejas: menuPlaceholderImage,
+  refrigerantes: menuPlaceholderImage,
+  'sucos-chas': menuPlaceholderImage,
+  'drinks-doses': menuPlaceholderImage,
+  energeticos: menuPlaceholderImage,
+  caipirinhas: menuPlaceholderImage,
 };
 
 // No real caipirinha photo was supplied; the UI must omit the photo rather than mislabel a drink.

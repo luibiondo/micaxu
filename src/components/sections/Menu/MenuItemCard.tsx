@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { ChevronDown, Sparkles } from 'lucide-react';
 import type { MenuItem } from '@/types/menu';
-import { menuCategoryImages } from '@/data/images';
+import { menuPlaceholderImage } from '@/data/images';
 import { FoodImage } from '@/components/ui/FoodImage';
 import { cn } from '@/utils/cn';
 import { MenuCategoryIcon } from './MenuCategoryIcon';
@@ -11,7 +11,6 @@ import { MenuCategoryIcon } from './MenuCategoryIcon';
 export function MenuItemCard({ item, index }: { item: MenuItem; index: number }) {
   const [expanded, setExpanded] = useState(false);
   const pricing = item.pricing;
-  const image = menuCategoryImages[item.categoryId];
   const serving = item.volumeOrServing ?? (item.categoryId === 'porcoes' ? pricing.type === 'dual' ? 'Meia ou inteira' : 'Inteira' : undefined);
   const note = pricing.type === 'single' ? pricing.note : undefined;
   const hasDetails = Boolean(item.description || item.variants?.length || note);
@@ -19,7 +18,7 @@ export function MenuItemCard({ item, index }: { item: MenuItem; index: number })
   return (
     <article className={cn('menu-item', item.highlight && 'highlighted', expanded && 'expanded')} data-category={item.categoryId}>
       <div className="menu-card-surface">
-        {image && <div className="menu-card-photo"><FoodImage image={image} decorative sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 33vw" /><span className="menu-photo-shade" /></div>}
+        <div className="menu-card-photo"><FoodImage image={menuPlaceholderImage} sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 33vw" /><span className="menu-photo-shade" /></div>
         <div className="menu-card-body">
           <div className="menu-card-top"><span className="menu-card-icon"><MenuCategoryIcon category={item.categoryId} /></span><span className="menu-card-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span></div>
           <div className="menu-card-tags">{serving && <span className="menu-serving-pill">{serving}</span>}{item.highlight && <span className="menu-highlight-tag"><Sparkles size={12} />Destaque</span>}</div>

@@ -18,7 +18,7 @@ Este documento define a arquitetura técnica, árvore de componentes, schema de 
 | **Ícones** | **Lucide React** | Biblioteca vetorial leve, consistente e personalizável para gastronomia, horários, localização e status. |
 | **Utilitários** | **clsx + tailwind-merge** | Composição segura de classes utilitárias via helper `cn()`. |
 
-Tipografia: Playfair Display nos títulos e Inter no corpo, via `next/font/google`. CTAs de localização usam creme sobre vinho; WhatsApp usa `#25D366` com texto escuro. Imagens da interface são locais, fornecidas por `src/data/images.ts`, sem placeholders externos; categorias sem foto fiel não recebem imagem.
+Tipografia: Playfair Display nos títulos e Inter no corpo, via `next/font/google`. CTAs de localização usam creme sobre vinho; WhatsApp usa `#25D366` com texto escuro. Imagens da interface são locais, fornecidas por `src/data/images.ts`, sem hotlinks externos. Todos os cards do cardápio usam a mesma foto ilustrativa local; hero, buffet e galeria mantêm suas imagens reais.
 
 ---
 
@@ -359,9 +359,11 @@ O rebranding substitui as imagens ilustrativas por arquivos reais fornecidos do 
 - A imagem PNG de 14,6MB é uma sessão de fotos de porções na mesa. Sua versão otimizada tem aproximadamente 180KB. Recortes dessa foto mostram cervejas e suco de laranja reais, sem ampliação.
 - `img.png` é o logo branco com transparência, não uma imagem corrompida.
 
-`src/data/images.ts` exporta `RestaurantImage` com `id`, `src`, `alt`, `category`, `orientation`, `width` e `height`; o mapa `restaurantImages`; `heroImage`, `buffetImage`, `logoImage`; `galleryImages`; e `menuCategoryImages`, um `Partial<Record<MenuCategoryId, RestaurantImage>>`.
+`src/data/images.ts` exporta `RestaurantImage` com `id`, `src`, `alt`, `category`, `orientation`, `width` e `height`; o mapa `restaurantImages`; `heroImage`, `buffetImage`, `logoImage`; `galleryImages`; e `menuPlaceholderImage`.
 
-Apenas porções, cervejas e águas/sucos/chás possuem imagem de categoria fiel. Não foi fornecida foto exclusiva confirmada de camarão, torresmo ou caipirinha. `caipirinhaImage` é `undefined`; a UI deve omitir a foto, nunca substituir por outro prato ou bebida.
+Por decisão do dono, todos os cards do cardápio usam exclusivamente `menuPlaceholderImage`, com alt "Foto ilustrativa do prato". O arquivo `/images/optimized/placeholder-comida.webp` tem 1000×667px, qualidade 80 e 112.478 bytes. A foto genérica foi baixada uma única vez do Unsplash (identificador `photo-1547592180-85f173990554`) e é distribuída localmente, sob a [licença Unsplash](https://unsplash.com/license), que permite download, modificação e uso comercial. Não há hotlink no código da aplicação.
+
+`menuCategoryImages` está depreciado e aponta todas as categorias para o mesmo placeholder por compatibilidade; novos componentes devem importar `menuPlaceholderImage` diretamente. `heroImage`, `buffetImage`, `logoImage` e `galleryImages` permanecem inalterados. Não foi fornecida foto exclusiva confirmada de caipirinha; `caipirinhaImage` continua `undefined`, sem alteração no builder.
 
 `src/data/instagramPosts.ts` deriva do catálogo real e mantém links para o perfil oficial. Os campos legados `image` e `fallbackImage` apontam ao mesmo arquivo local por compatibilidade, sem URLs externas.
 
