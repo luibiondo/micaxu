@@ -4,10 +4,12 @@ import { useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { ArrowDownRight, SearchX } from 'lucide-react';
 import { menuData } from '@/data/menuData';
+import { menuCategoryImages } from '@/data/images';
 import { useMenuFilter } from '@/hooks/useMenuFilter';
 import type { MenuCategoryId } from '@/types/menu';
 import { SectionTitle } from '@/components/ui/SectionTitle';
 import { GlassCard } from '@/components/ui/GlassCard';
+import { FoodImage } from '@/components/ui/FoodImage';
 import { MenuTabs } from './MenuTabs';
 import { MenuSearch } from './MenuSearch';
 import { MenuItemCard } from './MenuItemCard';
@@ -32,7 +34,8 @@ export function MenuSection() {
               {filtered.length === 0 ? <div className="empty-search"><SearchX size={30} /><h3>Nenhum sabor por aqui ainda.</h3><p>Tente outro nome ou explore todas as categorias.</p><button className="button button-outline" type="button" onClick={() => { setQuery(''); setActive(null); }}>Ver todo o cardápio</button></div> : menuData.categories.map((category) => {
                 const items = filtered.filter((item) => item.categoryId === category.id);
                 if (!items.length) return null;
-                return <div className="menu-category" key={category.id}><h3><span aria-hidden="true">{category.icon}</span>{category.title}<span className="category-line" /></h3><div className="menu-grid">{items.map((item) => <MenuItemCard key={item.id} item={item} />)}</div>{category.id === 'porcoes' && <PortionSaucesList />}{category.id === 'caipirinhas' && <a className="text-link builder-link" href="#caipirinhas">Prefere criar a sua? Monte sua Caipirinha <ArrowDownRight size={18} /></a>}</div>;
+                const image = menuCategoryImages[category.id];
+                return <div className="menu-category" key={category.id}><div className={`menu-category-heading${image ? ' has-image' : ''}`}>{image && <FoodImage image={image} sizes="(max-width: 760px) 100vw, 1240px" />}<h3><span aria-hidden="true">{category.icon}</span>{category.title}<span className="category-line" /></h3></div><div className="menu-grid">{items.map((item) => <MenuItemCard key={item.id} item={item} />)}</div>{category.id === 'porcoes' && <PortionSaucesList />}{category.id === 'caipirinhas' && <a className="text-link builder-link" href="#caipirinhas">Prefere criar a sua? Monte sua Caipirinha <ArrowDownRight size={18} /></a>}</div>;
               })}
             </motion.div>
           </AnimatePresence>

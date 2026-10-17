@@ -11,10 +11,12 @@ Este documento define a arquitetura técnica, árvore de componentes, schema de 
 | **Framework Web** | **Next.js 14+ (App Router)** | Roteamento moderno, renderização estática otimizada, excelente suporte a SEO e Metadados. |
 | **Modo de Saída** | **Static Export (`output: 'export'`)** | Gera artefatos HTML/CSS/JS estáticos puros (`/out`), permitindo hospedagem de altíssima velocidade e custo zero (Vercel, Cloudflare Pages, Firebase Hosting, Nginx, etc.), com `images: { unoptimized: true }`. |
 | **Linguagem** | **TypeScript (Strict Mode)** | Tipagem estática rigorosa para garantir 100% de conformidade com os preços, categorias e itens descritos no cardápio do `SPEC.md`. |
-| **Estilização** | **Tailwind CSS** | Design responsivo mobile-first, paleta terrosa/dourada/âmbar com fundos escuros refinados (`#12100E` / `#1A1613`), suporte a glassmorphism e microinterações. |
+| **Estilização** | **Tailwind CSS** | Design responsivo mobile-first, identidade vinho: primária `#773b3b`, secundária `#804e47`, fundo `#5c3f36`; superfícies derivadas e texto creme com contraste AA. Tokens CSS compartilhados com Tailwind, glassmorphism e microinterações. |
 | **Animações** | **Framer Motion** | Transições de abas via `layoutId`, scroll reveal suave, microinterações em botões e suporte nativo ao respeito a `prefers-reduced-motion`. |
 | **Ícones** | **Lucide React** | Biblioteca vetorial leve, consistente e personalizável para gastronomia, horários, localização e status. |
 | **Utilitários** | **clsx + tailwind-merge** | Composição segura de classes utilitárias via helper `cn()`. |
+
+Tipografia: Playfair Display nos títulos e Inter no corpo e preços, via `next/font/google`. Preços usam numerais tabulares. CTAs de localização usam creme sobre vinho; WhatsApp usa `#25D366` com texto escuro. Imagens da interface são locais, fornecidas por `src/data/images.ts`, sem placeholders externos; categorias sem foto fiel não recebem imagem.
 
 ---
 
@@ -345,31 +347,23 @@ Inserido diretamente em `<script type="application/ld+json">` dentro do `<head>`
 
 ---
 
-## 6. Plano de Imagens do Instagram com Fallback Unsplash
+## 6. Imagens Reais do Restaurante
 
-O Instagram bloqueia requisições do tipo *client-side CORS*. Para garantir que a aplicação nunca quebre, mantenha alta fidelidade estética e seja 100% estática:
+O rebranding substitui as imagens ilustrativas por arquivos reais fornecidos do Instagram.
 
-### 6.1 Estrutura em Camadas
-1. **Diretório Local**: `/public/images/instagram/`
-   - Armazena arquivos físicos locais (`post-tilapia.jpg`, `post-camarao.jpg`, `post-buffet.jpg`, `post-caipirinha.jpg`, `post-torresmo.jpg`, `post-cerveja.jpg`).
-2. **Script de Extração/Download**: `scripts/fetch-instagram.mjs`
-   - Script Node.js que pode ser executado manualmente para atualizar as imagens locais sem depender de CORS no cliente.
-3. **Catálogo com Fallback Imediato**: `src/data/instagramPosts.ts`
-   - Cada entrada possui:
-     - Imagem primária: caminho local `/images/instagram/...`
-     - Imagem fallback: URL do Unsplash de alta resolução com parâmetros de otimização (`auto=format&fit=crop&w=800&q=80`) selecionadas estritamente de acordo com os pratos do restaurante:
-       - Tilápia frita / empanada crocante
-       - Camarão empanado / alho e óleo
-       - Buffet variado e farto com travessas quentes
-       - Caipirinha clássica com limão e gelo em taça rústica
-       - Torresmo de rolo crocante
-       - Cervejas artesanais trincando em balde com gelo
-     - Legenda autêntica e link direto para o post/perfil oficial `@restaurantemicaxu`.
+- Originais preservados em `/public/images/restaurantemicaxu/`.
+- `npm run images:optimize` executa `scripts/optimize-images.mjs` com Sharp e gera WebP qualidade 80, sem ampliar, com no máximo 1600px em cada dimensão, em `/public/images/optimized/`.
+- O script registra a classificação visual dos 19 originais: dois pratos, sete fotos de buffet, duas fotos de ambiente, duas artes sobre fachada, dois logos (um avatar) e quatro miniaturas de destaques. O avatar, as miniaturas e as artes de avisos não entram no catálogo web.
+- A imagem PNG de 14,6MB é uma sessão de fotos de porções na mesa. Sua versão otimizada tem aproximadamente 180KB. Recortes dessa foto mostram cervejas e suco de laranja reais, sem ampliação.
+- `img.png` é o logo branco com transparência, não uma imagem corrompida.
 
-### 6.2 Comportamento do Componente (`InstagramGallery.tsx`)
-- O componente utiliza tratamento no evento `onError` da tag de imagem:
-  - Se a imagem local não for encontrada ou falhar, o `src` é instantaneamente substituído pela URL do Unsplash correspondente.
-  - Hover exibe overlay com ícone do Instagram, legenda e incentivo ao engajamento com link direto para o Instagram oficial.
+`src/data/images.ts` exporta `RestaurantImage` com `id`, `src`, `alt`, `category`, `orientation`, `width` e `height`; o mapa `restaurantImages`; `heroImage`, `buffetImage`, `logoImage`; `galleryImages`; e `menuCategoryImages`, um `Partial<Record<MenuCategoryId, RestaurantImage>>`.
+
+Apenas porções, cervejas e águas/sucos/chás possuem imagem de categoria fiel. Não foi fornecida foto exclusiva confirmada de camarão, torresmo ou caipirinha. `caipirinhaImage` é `undefined`; a UI deve omitir a foto, nunca substituir por outro prato ou bebida.
+
+`src/data/instagramPosts.ts` deriva do catálogo real e mantém links para o perfil oficial. Os campos legados `image` e `fallbackImage` apontam ao mesmo arquivo local por compatibilidade, sem URLs externas.
+
+`scripts/fetch-instagram.mjs` continua opcional; arquivos baixados vão para o diretório de originais e exigem revisão visual antes de inclusão no catálogo. Não dependemos da disponibilidade do Instagram no cliente.
 
 ---
 

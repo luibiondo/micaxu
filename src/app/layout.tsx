@@ -1,12 +1,14 @@
-import type { Metadata } from 'next';
-import { Cormorant_Garamond, Manrope } from 'next/font/google';
+import type { Metadata, Viewport } from 'next';
+import { Playfair_Display, Inter } from 'next/font/google';
 import { restaurantInfo } from '@/data/restaurantInfo';
 import { menuData } from '@/data/menuData';
 import { MotionProvider } from '@/components/ui/MotionProvider';
 import './globals.css';
 
-const heading = Cormorant_Garamond({ subsets: ['latin'], weight: ['400', '500', '600'], variable: '--font-heading', display: 'swap' });
-const body = Manrope({ subsets: ['latin'], variable: '--font-body', display: 'swap' });
+const heading = Playfair_Display({ subsets: ['latin'], variable: '--font-heading', display: 'swap' });
+const body = Inter({ subsets: ['latin'], variable: '--font-body', display: 'swap' });
+
+export const viewport: Viewport = { themeColor: '#5c3f36' };
 
 export const metadata: Metadata = {
   title: 'Restaurante Micaxu | Buffet por Kg & Porções em Boituva',

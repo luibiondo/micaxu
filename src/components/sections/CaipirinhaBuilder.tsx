@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { Check, GlassWater, Sparkles } from 'lucide-react';
 import { menuData } from '@/data/menuData';
-import { instagramPosts } from '@/data/instagramPosts';
+import { caipirinhaImage } from '@/data/images';
 import { FoodImage } from '@/components/ui/FoodImage';
 import { SectionTitle } from '@/components/ui/SectionTitle';
 import { GlassCard } from '@/components/ui/GlassCard';
@@ -23,7 +23,7 @@ export function CaipirinhaBuilder() {
       <div className="container">
         <GlassCard className="unboxed"><SectionTitle eyebrow="Do seu jeito, no seu ritmo" title="Um brinde à sua combinação." description="Fruta fresca, seu destilado favorito e aquele toque de Micaxu. O próximo brinde é você quem monta." /></GlassCard>
         <GlassCard className="builder">
-          <div className="builder-visual"><FoodImage post={instagramPosts[3]} fallbackOnly /><div className="builder-photo-copy"><GlassWater size={30} /><span>FRESCOR EM CADA GOLE</span><p>Seu momento.<br /><em>Sua caipirinha.</em></p></div></div>
+          <div className={cn('builder-visual', !caipirinhaImage && 'builder-illustration')}>{caipirinhaImage ? <FoodImage image={caipirinhaImage} /> : <GlassWater className="builder-glass-mark" size={180} strokeWidth={0.6} aria-hidden="true" />}<div className="builder-photo-copy"><GlassWater size={30} /><span>FRESCOR EM CADA GOLE</span><p>Seu momento.<br /><em>Sua caipirinha.</em></p></div></div>
           <div className="builder-content"><h3>Monte sua Caipirinha</h3><p className="builder-subtitle">Duas escolhas. Uma boa combinação.</p>
             <fieldset className="builder-step"><legend><span>01</span> Passo 1 — Fruta</legend><div className="fruit-options">{config.fruits.map((option) => <label key={option.id} className={cn('choice fruit-choice', fruitId === option.id && 'selected')}><input type="radio" name="fruta" value={option.id} checked={fruitId === option.id} onChange={() => setFruitId(option.id)} /><span>{option.name}</span>{fruitId === option.id && <Check size={15} />}</label>)}</div></fieldset>
             <fieldset className="builder-step" disabled={!fruit}><legend><span>02</span> Passo 2 — Destilado</legend><div className="spirit-options">{config.spirits.map((option) => <label key={option.id} className={cn('choice spirit-choice', spiritId === option.id && 'selected')}><input type="radio" name="destilado" value={option.id} checked={spiritId === option.id} onChange={() => setSpiritId(option.id)} /><span>{option.name}</span><Price value={option.price} /></label>)}</div></fieldset>

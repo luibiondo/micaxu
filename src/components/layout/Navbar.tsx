@@ -25,10 +25,10 @@ export function Navbar() {
           <UtensilsCrossed className="brand-icon" size={24} /><span>micaxu<span className="brand-caption">RESTAURANTE · BOITUVA</span></span>
         </a>
         <nav className="desktop-nav" aria-label="Navegação principal">{links.map(([href, label]) => <a key={href} href={href}>{label}</a>)}</nav>
-        <div className="nav-actions"><OpenStatusBadge compact /><a className="nav-contact" href={restaurantInfo.whatsappUrl} target="_blank" rel="noopener noreferrer">Fale com a gente <ArrowUpRight size={15} /></a></div>
+        <div className="nav-actions"><OpenStatusBadge compact /><a className="nav-contact button-whatsapp cta-glow" href={restaurantInfo.whatsappUrl} target="_blank" rel="noopener noreferrer">Fale com a gente <ArrowUpRight size={15} /></a></div>
         <button ref={button} className="menu-toggle" type="button" aria-label={open ? 'Fechar menu' : 'Abrir menu'} aria-expanded={open} aria-controls="mobile-menu" onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</button>
       </div>
-      {open && <nav id="mobile-menu" className="mobile-nav" aria-label="Navegação móvel">{links.map(([href, label]) => <a key={href} href={href} onClick={() => setOpen(false)}>{label}<ArrowUpRight size={16} /></a>)}<OpenStatusBadge /><a href={restaurantInfo.whatsappUrl} target="_blank" rel="noopener noreferrer">WhatsApp <ArrowUpRight size={16} /></a></nav>}
+      {open && <nav id="mobile-menu" className="mobile-nav" aria-label="Navegação móvel">{links.map(([href, label]) => <a key={href} href={href} onClick={() => setOpen(false)}>{label}<ArrowUpRight size={16} /></a>)}<OpenStatusBadge /><a className="button button-whatsapp" href={restaurantInfo.whatsappUrl} target="_blank" rel="noopener noreferrer">WhatsApp <ArrowUpRight size={16} /></a></nav>}
     </header>
   );
 }
