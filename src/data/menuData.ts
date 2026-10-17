@@ -2,13 +2,13 @@ import type { RestaurantMenuData } from '@/types/menu';
 
 export const menuData: RestaurantMenuData = {
   categories: [
-    { id: 'porcoes', title: 'Porções', icon: '🍤', note: '(M) = Média | (I) = Inteira' },
-    { id: 'cervejas', title: 'Cervejas', icon: '🍻' },
-    { id: 'refrigerantes', title: 'Refrigerantes & Outros', icon: '🥤' },
-    { id: 'sucos-chas', title: 'Águas, Sucos & Chás', icon: '🧃' },
-    { id: 'drinks-doses', title: 'Drinks Prontos & Doses', icon: '🍸' },
-    { id: 'energeticos', title: 'Energéticos & Isotônicos', icon: '⚡' },
-    { id: 'caipirinhas', title: 'Caipirinhas', icon: '🍹' },
+    { id: 'porcoes', title: 'Porções', icon: '', note: '(M) = Média | (I) = Inteira' },
+    { id: 'cervejas', title: 'Cervejas', icon: '' },
+    { id: 'refrigerantes', title: 'Refrigerantes & Outros', icon: '' },
+    { id: 'sucos-chas', title: 'Águas, Sucos & Chás', icon: '' },
+    { id: 'drinks-doses', title: 'Drinks Prontos & Doses', icon: '' },
+    { id: 'energeticos', title: 'Energéticos & Isotônicos', icon: '' },
+    { id: 'caipirinhas', title: 'Caipirinhas', icon: '' },
   ],
   items: [
     {

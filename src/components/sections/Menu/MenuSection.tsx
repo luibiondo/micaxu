@@ -35,7 +35,7 @@ export function MenuSection() {
                 const items = filtered.filter((item) => item.categoryId === category.id);
                 if (!items.length) return null;
                 const image = menuCategoryImages[category.id];
-                return <div className="menu-category" key={category.id}><div className={`menu-category-heading${image ? ' has-image' : ''}`}>{image && <FoodImage image={image} sizes="(max-width: 760px) 100vw, 1240px" />}<h3><span aria-hidden="true">{category.icon}</span>{category.title}<span className="category-line" /></h3></div><div className="menu-grid">{items.map((item) => <MenuItemCard key={item.id} item={item} />)}</div>{category.id === 'porcoes' && <PortionSaucesList />}{category.id === 'caipirinhas' && <a className="text-link builder-link" href="#caipirinhas">Prefere criar a sua? Monte sua Caipirinha <ArrowDownRight size={18} /></a>}</div>;
+                return <div className="menu-category" key={category.id}><div className={`menu-category-heading${false && image ? ' has-image' : ''}`}>{false && image ? <FoodImage image={image!} sizes="(max-width: 760px) 100vw, 1240px" /> : null}<h3><span aria-hidden="true">{category.icon}</span>{category.title}<span className="category-line" /></h3></div><div className="menu-grid">{items.map((item) => <MenuItemCard key={item.id} item={item} />)}</div>{category.id === 'porcoes' && <PortionSaucesList />}{category.id === 'caipirinhas' && <a className="text-link builder-link" href="#caipirinhas">Prefere criar a sua? Monte sua Caipirinha <ArrowDownRight size={18} /></a>}</div>;
               })}
             </motion.div>
           </AnimatePresence>

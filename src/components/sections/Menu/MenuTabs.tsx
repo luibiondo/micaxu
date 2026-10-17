@@ -5,7 +5,7 @@ import { menuData } from '@/data/menuData';
 import type { MenuCategoryId } from '@/types/menu';
 import { cn } from '@/utils/cn';
 
-const tabs = [{ id: null, title: 'Tudo', icon: '✦' }, ...menuData.categories];
+const tabs = [{ id: null, title: 'Tudo', icon: '' }, ...menuData.categories];
 
 export function MenuTabs({ active, onChange }: { active: MenuCategoryId | null; onChange: (id: MenuCategoryId | null) => void }) {
   return (

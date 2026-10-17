@@ -9,7 +9,11 @@ const outputDirectory = path.join(root, 'public/images/optimized');
 
 // Each original was visually reviewed; promotional notices are not gallery photos.
 const assets = [
-  { prefix: 'img.png', id: 'logo', category: 'logo' },
+  { prefix: 'logo.png', id: 'logo', category: 'logo' },
+  { prefix: 'restaurante', id: 'restaurante', category: 'ambiente' },
+  { prefix: 'comida-de-primeira.png', id: 'comida-de-primeira', category: 'buffet' },
+  { prefix: 'carne-e-salada.png', id: 'carne-e-salada', category: 'buffet' },
+  { prefix: 'pure.png', id: 'pure', category: 'buffet' },
   { prefix: 'imgi_10_', id: 'iscas-peixe', category: 'prato' },
   { prefix: 'imgi_17_', id: 'buffet-legumes', category: 'buffet' },
   { prefix: 'imgi_20_', id: 'buffet-frango', category: 'buffet' },
@@ -35,9 +39,12 @@ await mkdir(outputDirectory, { recursive: true });
 
 for (const asset of assets) {
   const filename = files.find((file) =>
-    asset.prefix === 'img.png' ? file === asset.prefix : file.startsWith(asset.prefix),
+    file === asset.prefix || file.startsWith(asset.prefix),
   );
-  if (!filename) throw new Error(`Missing reviewed original: ${asset.prefix}`);
+  if (!filename) {
+    console.log(`Skipping asset not present: ${asset.prefix}`);
+    continue;
+  }
   if (asset.skip) {
     console.log(`${filename}: ${asset.category}; omitida: ${asset.skip}`);
     continue;

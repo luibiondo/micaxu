@@ -29,7 +29,16 @@ function image(
 }
 
 export const restaurantImages = {
-  logo: image('logo', 'Logotipo branco do Restaurante Micaxu', 'logo', 500, 500),
+  logo: image('logo', 'Logotipo branco do Restaurante Micaxu', 'logo', 447, 260),
+  restaurante: {
+    id: 'restaurante',
+    src: '/images/restaurantemicaxu/cta.png',
+    alt: 'Ambiente interno do Restaurante Micaxu com mesas e logotipo',
+    category: 'ambiente' as const,
+    orientation: 'square' as const,
+    width: 447,
+    height: 447,
+  },
   iscasPeixe: image(
     'iscas-peixe',
     'Porção de iscas de peixe empanadas com limão no Restaurante Micaxu',
@@ -79,13 +88,24 @@ export const restaurantImages = {
     1280,
     1600,
   ),
-  ambienteLago: image(
-    'ambiente-lago',
-    'Mesas de madeira e vista para o lago no Restaurante Micaxu',
-    'ambiente',
-    1280,
-    1600,
-  ),
+  ambienteLago: {
+    id: 'pure',
+    src: '/images/restaurantemicaxu/pure.png',
+    alt: 'Purê de batatas cremoso e filés de peixe empanados no buffet do Micaxu',
+    category: 'buffet' as const,
+    orientation: 'portrait' as const,
+    width: 1280,
+    height: 1600,
+  },
+  pure: {
+    id: 'pure',
+    src: '/images/restaurantemicaxu/pure.png',
+    alt: 'Purê de batatas cremoso e filés de peixe empanados no buffet do Micaxu',
+    category: 'buffet' as const,
+    orientation: 'portrait' as const,
+    width: 1280,
+    height: 1600,
+  },
   buffetEmpanados: image(
     'buffet-empanados',
     'Travessas de empanados, purê e batatas no buffet',
@@ -93,13 +113,24 @@ export const restaurantImages = {
     1280,
     1600,
   ),
-  mesaPorcoes: image(
-    'mesa-porcoes',
-    'Bastidores de uma sessão de fotos com porções, suco e cervejas à beira do lago',
-    'ambiente',
-    1200,
-    1600,
-  ),
+  mesaPorcoes: {
+    id: 'comida-de-primeira',
+    src: '/images/restaurantemicaxu/comida-de-primeira.png',
+    alt: 'Pratos quentes e travessas do buffet do Restaurante Micaxu',
+    category: 'buffet' as const,
+    orientation: 'portrait' as const,
+    width: 1350,
+    height: 1687,
+  },
+  comidaDePrimeira: {
+    id: 'comida-de-primeira',
+    src: '/images/restaurantemicaxu/comida-de-primeira.png',
+    alt: 'Pratos quentes e travessas do buffet do Restaurante Micaxu',
+    category: 'buffet' as const,
+    orientation: 'portrait' as const,
+    width: 1350,
+    height: 1687,
+  },
   buffetGratinado: image(
     'buffet-gratinado',
     'Buffet com prato gratinado, carnes aceboladas e acompanhamentos',
@@ -107,13 +138,24 @@ export const restaurantImages = {
     1280,
     1600,
   ),
-  cervejas: image(
-    'cervejas',
-    'Balde com garrafas de cerveja e taça servida à beira do lago',
-    'bebida',
-    500,
-    800,
-  ),
+  cervejas: {
+    id: 'carne-e-salada',
+    src: '/images/restaurantemicaxu/carne-e-salada.png',
+    alt: 'Carnes grelhadas ao molho e brócolis com calabresa no buffet do Micaxu',
+    category: 'buffet' as const,
+    orientation: 'square' as const,
+    width: 1080,
+    height: 1080,
+  },
+  carneESalada: {
+    id: 'carne-e-salada',
+    src: '/images/restaurantemicaxu/carne-e-salada.png',
+    alt: 'Carnes grelhadas ao molho e brócolis com calabresa no buffet do Micaxu',
+    category: 'buffet' as const,
+    orientation: 'square' as const,
+    width: 1080,
+    height: 1080,
+  },
   sucoLaranja: image(
     'suco-laranja',
     'Copo de suco de laranja servido na mesa do Micaxu',
@@ -123,7 +165,7 @@ export const restaurantImages = {
   ),
 } satisfies Record<string, RestaurantImage>;
 
-export const heroImage: RestaurantImage = restaurantImages.iscasPeixe;
+export const heroImage: RestaurantImage = restaurantImages.restaurante;
 export const buffetImage: RestaurantImage = restaurantImages.buffetVariado;
 export const logoImage: RestaurantImage = restaurantImages.logo;
 

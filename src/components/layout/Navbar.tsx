@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { Menu, X, ArrowUpRight, UtensilsCrossed } from 'lucide-react';
+import { Menu, X, ArrowUpRight } from 'lucide-react';
 import { restaurantInfo } from '@/data/restaurantInfo';
 import { OpenStatusBadge } from '@/components/ui/OpenStatusBadge';
 
@@ -22,7 +22,13 @@ export function Navbar() {
     <header className="navbar">
       <div className="container nav-inner">
         <a className="brand" href="#inicio" aria-label={`${restaurantInfo.name} — início`} onClick={() => setOpen(false)}>
-          <UtensilsCrossed className="brand-icon" size={24} /><span>micaxu<span className="brand-caption">RESTAURANTE · BOITUVA</span></span>
+          <img
+            src="/images/restaurantemicaxu/logo.png"
+            alt="Logo do Restaurante Micaxu"
+            className="brand-logo"
+            width={150}
+            height={87}
+          />
         </a>
         <nav className="desktop-nav" aria-label="Navegação principal">{links.map(([href, label]) => <a key={href} href={href}>{label}</a>)}</nav>
         <div className="nav-actions"><OpenStatusBadge compact /><a className="nav-contact button-whatsapp cta-glow" href={restaurantInfo.whatsappUrl} target="_blank" rel="noopener noreferrer">Fale com a gente <ArrowUpRight size={15} /></a></div>

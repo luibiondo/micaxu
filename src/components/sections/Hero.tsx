@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useReducedMotion } from 'framer-motion';
-import { ArrowDown, ArrowUpRight, MapPin } from 'lucide-react';
+import { ArrowUpRight, MapPin } from 'lucide-react';
 import { heroImage } from '@/data/images';
 import { restaurantInfo } from '@/data/restaurantInfo';
 import { FoodImage } from '@/components/ui/FoodImage';
@@ -22,15 +22,9 @@ export function Hero() {
         <motion.div className="hero-visual" initial={reduced ? false : { opacity: 0, scale: 1.045 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.3 }}>
           <FoodImage image={heroImage} priority sizes="(max-width: 760px) 100vw, 55vw" />
           <div className="hero-image-shade" />
-          <div className="hero-stamp"><span>COMIDA BOA</span><UtensilMark /><span>BOA COMPANHIA</span></div>
           <div className="hero-image-caption"><span>À MESA, A VIDA É MELHOR.</span><span>Buffet · Porções · Drinks</span></div>
         </motion.div>
       </div>
-      <a href="#buffet" className="hero-scroll"><span>Um convite ao sabor</span><ArrowDown size={16} /></a>
     </section>
   );
-}
-
-function UtensilMark() {
-  return <span className="stamp-m" aria-hidden="true">m.</span>;
 }

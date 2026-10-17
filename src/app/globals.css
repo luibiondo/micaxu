@@ -69,6 +69,7 @@ fieldset { min-width: 0; }
 .brand > span { font-family: var(--font-heading), Georgia, serif; font-size: 39px; font-weight: 600; letter-spacing: -.05em; }
 .brand-icon { color: var(--accent); }
 .brand-caption { display: block; font-family: var(--font-body), sans-serif; color: var(--muted); font-size: 7px; line-height: 1; font-weight: 500; letter-spacing: .16em; margin-top: 9px; }
+.brand-logo { height: 70px; width: auto; max-width: 170px; object-fit: contain; display: block; }
 .desktop-nav { display: flex; gap: 28px; font-size: 11px; color: var(--muted); }
 .desktop-nav a { padding-block: 12px; transition: color .2s; }
 .desktop-nav a:hover { color: var(--accent); }
@@ -154,7 +155,7 @@ fieldset { min-width: 0; }
 .menu-tab:hover { color: var(--cream); background: #fff3e304; }
 .menu-tab.active { color: var(--ink); }
 .active-tab-bg { position: absolute; inset: 0; background: var(--accent); border-radius: inherit; }
-.tab-content { position: relative; display: flex; gap: 8px; align-items: center; font-weight: 600; }
+.tab-content { position: relative; display: flex; align-items: center; font-weight: 600; }
 .tab-content > span { font-size: 14px; }
 .menu-panel-meta { display: flex; justify-content: space-between; gap: 15px; margin-block: 20px 28px; font-size: 10px; color: var(--muted); }
 .menu-panel-meta > p { color: var(--accent); }
@@ -317,6 +318,7 @@ fieldset { min-width: 0; }
   .brand > span { font-size: 34px; }
   .brand-caption { font-size: 6px; }
   .brand-icon { width: 21px; }
+  .brand-logo { height: 42px; max-width: 140px; }
   .menu-toggle { display: flex; }
   .mobile-nav { display: flex; flex-direction: column; gap: 6px; padding: 15px 24px 24px; border-top: 1px solid var(--line); background: var(--surface); }
   .mobile-nav a { display: flex; justify-content: space-between; min-height: 46px; align-items: center; font-size: 13px; }
