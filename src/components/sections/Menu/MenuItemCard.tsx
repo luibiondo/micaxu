@@ -1,6 +1,5 @@
 import { Sparkles } from 'lucide-react';
 import type { MenuItem } from '@/types/menu';
-import { Price } from '@/components/ui/Price';
 import { cn } from '@/utils/cn';
 
 export function MenuItemCard({ item }: { item: MenuItem }) {
@@ -11,12 +10,11 @@ export function MenuItemCard({ item }: { item: MenuItem }) {
       {item.volumeOrServing && <p className="item-serving">{item.volumeOrServing}</p>}
       {item.variants && <p className="item-variants">{item.variants.join(' · ')}</p>}
       {item.description && <p className="item-description">{item.description}</p>}
-      <div className="item-bottom">
-        {pricing.type === 'dual' ? <div className="dual-price"><span><small>M</small><Price value={pricing.priceMedia} /></span><span><small>I</small><Price value={pricing.priceInteira} /></span></div> : <div className="single-price">{item.categoryId === 'porcoes' && <small>INTEIRA</small>}{pricing.type === 'single' ? <Price value={pricing.price} /> : pricing.price !== undefined && <Price value={pricing.price} />}</div>}
-        {pricing.type === 'consult' && <span className="consult-note">{pricing.note}</span>}
+      {(item.categoryId === 'porcoes' || (pricing.type === 'single' && pricing.note) || item.isAvailable === false) && <div className="item-bottom">
+        {item.categoryId === 'porcoes' && <span className="item-serving">{pricing.type === 'dual' ? 'Porção média ou inteira' : 'Porção inteira'}</span>}
         {pricing.type === 'single' && pricing.note && <span className="item-serving">{pricing.note}</span>}
         {item.isAvailable === false && <span className="consult-note">Indisponível no momento</span>}
-      </div>
+      </div>}
     </article>
   );
 }

@@ -2,6 +2,8 @@
 
 Este documento define a arquitetura técnica, árvore de componentes, schema de dados, estratégia de SEO local e a divisão de trabalho entre as frentes de desenvolvimento para a landing page e cardápio digital do **Restaurante Micaxu** (Boituva/SP), com base na especificação oficial contida em `docs/SPEC.md`.
 
+> Atualização de apresentação (17/10/2026): o site não exibe preços, totalizadores, legenda M/I, avisos de alteração ou consultas de preço, inclusive em SEO/JSON-LD. Os valores permanecem no catálogo de dados para preservar seus contratos e validações. O montador de caipirinha mantém as escolhas e o resumo da combinação, sem total.
+
 ---
 
 ## 1. Stack Tecnológica e Decisões de Engenharia
@@ -16,7 +18,7 @@ Este documento define a arquitetura técnica, árvore de componentes, schema de 
 | **Ícones** | **Lucide React** | Biblioteca vetorial leve, consistente e personalizável para gastronomia, horários, localização e status. |
 | **Utilitários** | **clsx + tailwind-merge** | Composição segura de classes utilitárias via helper `cn()`. |
 
-Tipografia: Playfair Display nos títulos e Inter no corpo e preços, via `next/font/google`. Preços usam numerais tabulares. CTAs de localização usam creme sobre vinho; WhatsApp usa `#25D366` com texto escuro. Imagens da interface são locais, fornecidas por `src/data/images.ts`, sem placeholders externos; categorias sem foto fiel não recebem imagem.
+Tipografia: Playfair Display nos títulos e Inter no corpo, via `next/font/google`. CTAs de localização usam creme sobre vinho; WhatsApp usa `#25D366` com texto escuro. Imagens da interface são locais, fornecidas por `src/data/images.ts`, sem placeholders externos; categorias sem foto fiel não recebem imagem.
 
 ---
 

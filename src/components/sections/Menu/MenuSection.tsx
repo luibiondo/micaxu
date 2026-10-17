@@ -20,14 +20,13 @@ export function MenuSection() {
   const [query, setQuery] = useState('');
   const filtered = useMenuFilter(menuData.items, active, query);
   const reduced = useReducedMotion();
-  const portionsVisible = filtered.some((item) => item.categoryId === 'porcoes');
   return (
     <section id="cardapio" className="section-pad menu-section">
       <div className="container">
         <GlassCard className="unboxed menu-intro"><SectionTitle eyebrow="Escolha seu próximo favorito" title="Um cardápio. Muitos encontros." description="Para dividir, brindar e deixar a conversa render. Encontre o que combina com o seu momento." /><span className="menu-intro-mark" aria-hidden="true"><ArrowDownRight size={52} /></span></GlassCard>
         <div className="menu-controls"><MenuSearch value={query} onChange={(value) => { setQuery(value); if (value.trim()) setActive(null); }} /><p>Explore. Escolha. Compartilhe.</p></div>
         <MenuTabs active={active} onChange={setActive} />
-        <div className="menu-panel-meta"><p>{portionsVisible ? menuData.categories.find((category) => category.id === 'porcoes')?.note : 'Seu próximo brinde começa aqui.'}</p><span role="status" aria-live="polite">{filtered.length} {filtered.length === 1 ? 'item encontrado' : 'itens encontrados'}</span></div>
+        <div className="menu-panel-meta"><p>Explore. Escolha. Compartilhe.</p><span role="status" aria-live="polite">{filtered.length} {filtered.length === 1 ? 'item encontrado' : 'itens encontrados'}</span></div>
         <div id="menu-panel" role="tabpanel" aria-labelledby={`tab-${active ?? 'todos'}`} tabIndex={0}>
           <AnimatePresence mode="wait" initial={false}>
             <motion.div key={active ?? 'todos'} initial={reduced ? false : { opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.18 }}>
