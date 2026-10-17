@@ -37,7 +37,7 @@ export const instagramPosts: InstagramPost[] = [
     id: 'caipirinha',
     image: '/images/instagram/post-caipirinha.jpg',
     fallbackImage:
-      'https://images.unsplash.com/photo-1513558161293-cdaf765edfd7?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=800&q=80',
     caption: 'Caipirinha com fruta fresca e gelo.',
     instagramUrl,
   },
